@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,9 +29,19 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers("/index.html").permitAll()
+			.antMatchers("/index.html","/signup.html","/login.html").permitAll()
+			.antMatchers("/profile/**").authenticated()
+			.antMatchers("/admin/**").hasRole("ADMIN")
+			.antMatchers("/manager/**").hasAnyRole("MANAGER","ADMIN")
 			.and()
-			.httpBasic();
+			.formLogin()
+			.loginPage("/login")
+			.usernameParameter("email")
+			.passwordParameter("password")
+			.and()
+			.logout()
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+			.logoutSuccessUrl("/login");
 	}
 	
 	@Bean
