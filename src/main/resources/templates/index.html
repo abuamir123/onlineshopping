@@ -12,7 +12,7 @@
 			th:href="@{~/profile/index}">PROFILE</a> </li>
 		<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"
 			th:href="@{~/admin/index}">ADMIN</a> </li>
-		<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="#"
+		<li sec:authorize="hasAnyRole('ROLE_MANAGER','ROLE_ADMIN')"><a href="#"
 			th:href="@{~/manager/index}">MANAGER</a></li>
 	</ul>
 	<br>

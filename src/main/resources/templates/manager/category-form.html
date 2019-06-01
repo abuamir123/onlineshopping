@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table>
+		<tr th:each="category : ${categoryList}">
+			<td th:text="${category.categoryName}"></td>
+		</tr>
+	</table>
+
+	<form th:action="@{~/manager/add-category}" method="post">
+		categoryName: <input type="text" name="categoryName" placeholder="Category Name">
+		<input type="submit" value="ADD">
+	</form>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 package com.info.model;
 
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,9 +30,9 @@ public class Product {
 	@NotNull
 	private int productPrice;
 	
-	private Blob image;
+	private String image;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private Category category = new Category();
 
@@ -71,11 +71,11 @@ public class Product {
 		this.productPrice = productPrice;
 	}
 
-	public Blob getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

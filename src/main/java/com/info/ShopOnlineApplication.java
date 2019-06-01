@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ShopOnlineApplication {
 
 	public static void main(String[] args) {
+//		new File(ManagerController.uploadDirectory).mkdir();
 		SpringApplication.run(ShopOnlineApplication.class, args);
 	}
 

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Product Page</h1>
+
+	<form th:action="@{~/manager/add-product}" method="post"
+		enctype="multipart/form-data">
+		<select>
+			<option>Select Category</option>
+			<option th:each="category : ${categoryList}" th:value="${category.categoryId}"
+				th:text="${category.categoryName}"></option>
+		</select> 
+		
+		ProductName: <input type="text" name="productName" placeholder="Product Name"> 
+		ProductDescription :<input type="text" name="productDescription" 
+			placeholder="Product Des">
+		ProductPrice: <input type="number" name="productPrice"
+			placeholder="Product Price"> 
+		ProductImage: <input type="file" name="file">
+		<input type="submit" value="ADD">
+	</form>
+
+</body>
+</html>
