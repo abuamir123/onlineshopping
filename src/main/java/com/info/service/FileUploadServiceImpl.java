@@ -13,6 +13,9 @@ public class FileUploadServiceImpl implements FileUploadService {
 
 	private static String UPLOADED_FOLDER = System.getProperty("user.dir") + 
 			"\\src\\main\\resources\\images\\";
+//	private static String UPLOADED_FOLDER =System.getProperty("user.dir") +
+//			"/src/main/resources/images/";
+//	private static String UPLOADED_FOLDER ="classpath:images/sample.txt";
 	
 	@Override
 	public String upload(MultipartFile file) {
@@ -31,7 +34,7 @@ public class FileUploadServiceImpl implements FileUploadService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return UPLOADED_FOLDER + fileName;
+		return "/resources/" + fileName;
 	}
 
 	private String generateFileName(String file) {

@@ -2,7 +2,6 @@ package com.info.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -58,37 +57,35 @@ public class ManagerController {
 	public ModelAndView listProduct() {
 		ModelAndView mv = new ModelAndView("manager/product-form");
 		mv.addObject("categoryList", categoryService.listCategory());
-//		mv.addObject("productList", productService.listProduct());
+		mv.addObject("productList", productService.listProduct());
 		return mv;
 	}
 	
+//	@PostMapping("add-product")
+//	public String addProduct(@RequestParam("file") MultipartFile file, Model model,Product product) {
+//		System.out.println("file: " + file.getOriginalFilename());
+//		String filePath = fileUploadService.upload(file);
+//		System.out.println(filePath);
+//		product.setImage(filePath);
+//		
+//		System.out.println(product.getImage());
+//		
+//		productService.addProduct(product);
+//		return "redirect:/manager/product-form";
+//	}
+
 	@PostMapping("add-product")
-	public String addProduct(@RequestParam("file") MultipartFile file, Model model,Product product) {
-//		ModelAndView mv = new ModelAndView("manager/product-form");
+	public ModelAndView addProduct(Product product, @RequestParam("file") MultipartFile file) {
+		ModelAndView mv = new ModelAndView("manager/product-form");
 		System.out.println("file: " + file.getOriginalFilename());
 		String filePath = fileUploadService.upload(file);
-		System.out.println(filePath);
 		product.setImage(filePath);
 		
 		System.out.println(product.getImage());
 		
 		productService.addProduct(product);
-//		model.addAttribute("productList", productService.listProduct());
-		return "redirect:/manager/product-form";
+		mv.addObject("productList", productService.listProduct());
+		return mv;
 	}
-
-//	@PostMapping("add-product")
-//	public ModelAndView addProduct(Product product, @RequestParam("image") MultipartFile file) {
-//		ModelAndView mv = new ModelAndView("manager/product-form");
-//		System.out.println("file: " + file.getOriginalFilename());
-//		String filePath = fileUploadService.upload(file);
-//		product.setImage(filePath);
-//		
-//		System.out.println(product);
-//		
-//		productService.addProduct(product);
-//		mv.addObject("productList", productService.listProduct());
-//		return mv;
-//	}
 
 }

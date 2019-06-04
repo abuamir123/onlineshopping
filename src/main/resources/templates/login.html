@@ -8,7 +8,9 @@
 <body>
 	<form th:action="@{/login}" method="post">
 		Email: <input type="email" name="email" placeholder="Email">
-		Password: <input type="password" name="password" placeholder="Password">
+		Password: <input type="password" name="password" placeholder="Password"> 
+		<input type="checkbox"
+			id="checkRememberMe" name="checkRememberMe">Remember me?
 		<input type="submit" value="LogIn">
 	</form>
 </body>

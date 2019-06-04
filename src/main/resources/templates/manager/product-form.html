@@ -8,10 +8,19 @@
 <body>
 
 	<h1>Product Page</h1>
+	
+	
+	<table>
+		<tr th:each="product : ${productList}">
+			<td th:text="${product.productName}"></td>
+			<td><img th:src="${product.image}" width="300px"></td>
+		<!-- <td><img th:src="${product.image}" width="200px"></td> -->	
+		</tr>
+	</table>
 
 	<form th:action="@{~/manager/add-product}" method="post"
 		enctype="multipart/form-data">
-		<select>
+		<select name="category">
 			<option>Select Category</option>
 			<option th:each="category : ${categoryList}" th:value="${category.categoryId}"
 				th:text="${category.categoryName}"></option>
@@ -22,6 +31,8 @@
 			placeholder="Product Des">
 		ProductPrice: <input type="number" name="productPrice"
 			placeholder="Product Price"> 
+		ProductUnit: <input type="number" name="productUnit"
+			placeholder="Product Unit">
 		ProductImage: <input type="file" name="file">
 		<input type="submit" value="ADD">
 	</form>
