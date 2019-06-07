@@ -7,4 +7,6 @@ public interface UserService {
 	public User findByEmail(String email);
 	
 	public void save(User user);
+	
+	public void update(User user);
 }
