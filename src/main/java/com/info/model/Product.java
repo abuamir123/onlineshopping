@@ -1,11 +1,11 @@
 package com.info.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,8 +39,8 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category = new Category();
 
-	@ManyToMany(mappedBy = "productList")
-	private List<User> userList = new ArrayList<User>();
+	@ManyToMany(mappedBy = "productList",fetch = FetchType.EAGER)
+	private List<User> userList;
 	
 	public long getProductId() {
 		return productId;

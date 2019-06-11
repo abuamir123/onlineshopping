@@ -1,5 +1,7 @@
 package com.info.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.info.dao.UserRepository;
+import com.info.model.Product;
 import com.info.model.User;
 
 @Service
@@ -33,7 +36,16 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void update(User user) {
+		List<Product> productlist1 = user.getProductList();
+		List<Product> productlist = (userRepository.findByEmail(user.getEmail())).getProductList();
+		productlist1.addAll(productlist);
+		user.setProductList(productlist1);
 		userRepository.save(user);
+	}
+
+	@Override
+	public List<User> findAllUser() {
+		return userRepository.findAll();
 	}
 
 }

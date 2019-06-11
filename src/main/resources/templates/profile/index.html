@@ -13,6 +13,11 @@
 			<td th:text="${product.productDescription}"></td>
 			<td th:text="${product.productPrice}"></td>
 			<td><img th:src="${product.image}" width="300px"></td>
+			<td>
+				<span th:each="course,iterStat : ${product.userList}">
+        		<span th:text="${course.email}"/><th:block th:if="${!iterStat.last}">,</th:block>
+        		</span> 
+			</td>
 			<td><a href="#" th:href="@{'~/profile/addToCart/' + ${product.productId}}">AddToCart</a></td>
 		</tr>
 	</table>

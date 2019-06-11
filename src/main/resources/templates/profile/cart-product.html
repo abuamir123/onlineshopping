@@ -6,10 +6,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-	<ul th:each="userProduct : ${userProduct}">
-    	<li th:text="${userProduct.productName}"></li>
-	</ul>
 
+<h1>THis is cart product page!</h1>
+
+	<table>
+		<tr th:each="product : ${user.productList}">
+			<td th:text="${product.productName}"></td>
+		</tr>
+	</table>
+	
+	<!--  -->
 </body>
 </html>

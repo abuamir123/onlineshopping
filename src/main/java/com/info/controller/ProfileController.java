@@ -44,11 +44,15 @@ public class ProfileController {
 	public ModelAndView cartProduct(Principal principal) {
 		ModelAndView mv = new ModelAndView("profile/cart-product");
 		User user = userService.findByEmail(principal.getName());
+//		List<User> userList = userService.
+//		System.out.println(user.toString());
 //		List<Product> productArray = new ArrayList<Product>();
 //		for (Product string1 : user.getProductList()) {
 //			productArray.add(string1);
 //		}
-		mv.addObject("userProduct", user.getProductList());
+//		mv.addObject("userProduct", user.getProductList());
+//		mv.addObject("userlist", userService.findAllUser());
+		mv.addObject("user", user);
 		return mv;
 	}
 	
@@ -69,7 +73,6 @@ public class ProfileController {
 		
 		userService.update(user);
 		productService.addProduct(product);
-//		mv.addObject("userProduct", user.getProductList());
 		
 		return mv;
 	}

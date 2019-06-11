@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,9 +49,9 @@ public class User {
 		this.active = active;
 	}
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinTable(name = "userProductList", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "productId"))
-	private List<Product> productList = new ArrayList<>();
+	private List<Product> productList;
 
 	public User() {}
 	
@@ -119,11 +120,11 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password=" + password
-				+ ", role=" + role + "]";
+				+ ", role=" + role + ", productList=" + productList + "]";
 	}
 
 	public List<String> getRoleList() {
