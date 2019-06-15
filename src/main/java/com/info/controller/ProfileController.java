@@ -26,13 +26,6 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 	
-//	SpringS
-	
-//	@GetMapping("index")
-//	public String index() {
-//		return "profile/index";
-//	}
-	
 	@GetMapping("index")
 	public ModelAndView index() {
 		ModelAndView mv = new ModelAndView("profile/index");
@@ -53,9 +46,21 @@ public class ProfileController {
 //		mv.addObject("userProduct", user.getProductList());
 //		mv.addObject("userlist", userService.findAllUser());
 		mv.addObject("user", user);
+		int total = findSum(user);
+		mv.addObject("total", total);
 		return mv;
 	}
 	
+	private int findSum(User user) {
+		List<Product> list = user.getProductList();
+		int sum =0;
+		for(int i=0; i<list.size(); i++) {
+			Product p = list.get(i);
+			sum+= p.getProductPrice();
+		}
+		return sum;
+	}
+
 	@GetMapping("addToCart/{productId}")
 	public ModelAndView addToCart(@PathVariable("productId")String productId,Principal principal) {
 		ModelAndView mv = new ModelAndView("profile/cart-product");
@@ -73,6 +78,8 @@ public class ProfileController {
 		
 		userService.update(user);
 		productService.addProduct(product);
+		
+		mv.addObject("user", user);
 		
 		return mv;
 	}

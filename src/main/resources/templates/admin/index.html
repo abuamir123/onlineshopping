@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<head th:insert="fragments.html :: headerfiles">
 </head>
 <body>
-	<h1>This is Admin Home page</h1>
-
-	<ul>
-		<li><a href="#" th:href="@{~/manager/category-form}">Category</a></li>
-		<li><a href="#" th:href="@{~/manager/product-form}">Product</a></li>
-		<li><a href="#" th:href="@{~/manager/index}">MANAGER</a></li>
-	</ul>
+	<header th:insert="fragments.html :: nav"></header>
+	<div class="container">
+	<h1 class="display-4 my-2" th:text ="'Welcome ' + ${#authentication.getPrincipal().getFirstName()}"></h1>
+	<hr>
+	<div class="row">
+		<div class="list-group list-group-flush col-5">
+			<a class="list-group-item list-group-item-action" 
+				href="#" th:href="@{/manager/category-form}">Manage Category</a>
+			<a class="list-group-item list-group-item-action" 
+				href="#" th:href="@{/manager/product-form}">Manage Product</a>
+			<a class="list-group-item list-group-item-action" 
+				href="#" th:href="@{/manager/product-form}">Add Admin/Manager</a>
+		</div>
+	</div>
 
 </body>
 </html>

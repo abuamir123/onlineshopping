@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<head th:insert="fragments.html :: headerfiles">
 </head>
 <body>
 
-<h1>THis is cart product page!</h1>
+	<h1 class="display-4 my-3">Your Cart Product!</h1>
 
-	<table>
-		<tr th:each="product : ${user.productList}">
-			<td th:text="${product.productName}"></td>
-		</tr>
-	</table>
-	
-	<!--  -->
+	<div class="container">
+		<div class="row">
+			<ul class="list-group col-7">
+				<li class="list-group-item d-flex justify-content-around">
+					<span class="my-auto h6">Product Image</span> 
+					<span class="my-auto h6">Product</span> 
+					<span class="my-auto h6">Price</span> 
+				</li>
+			</ul>
+			<ul class="list-group col-7" th:each="product : ${user.productList}">
+				<li class="list-group-item d-flex justify-content-around">
+					<img th:src="${product.image}" width="100"> 
+					<span class="my-auto" th:text="${product.productName}"></span> 
+					<span class="my-auto" th:text="'$ '+${product.productPrice}"></span>
+				</li>
+			</ul>
+			<ul class="list-group col-7">
+				<li class="list-group-item d-flex justify-content-end">
+					<span class="h6" th:text="'Total : '+${total}"></span>
+				</li>
+				<li class="list-group-item d-flex justify-content-end">
+					<button type="button" class="btn btn-primary btn-lg">Check Out</button>
+				</li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
