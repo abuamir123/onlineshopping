@@ -28,7 +28,6 @@ public class HomeController {
 	private ProductService productService;
 	
 	@GetMapping({"index", "/"})
-//	@RequestMapping(value = )
 	public String index(Model model) {
 		model.addAttribute("categoryList", categoryService.listCategory());
 		model.addAttribute("productList", productService.listProduct());

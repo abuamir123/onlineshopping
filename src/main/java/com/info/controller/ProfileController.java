@@ -26,13 +26,6 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 	
-//	@GetMapping("index")
-//	public ModelAndView index() {
-//		ModelAndView mv = new ModelAndView("profile/index");
-//		mv.addObject("productList", productService.listProduct());
-//		return mv;
-//	}
-	
 	@GetMapping("cart-product")
 	public ModelAndView cartProduct(Principal principal) {
 		ModelAndView mv = new ModelAndView("profile/cart-product");
