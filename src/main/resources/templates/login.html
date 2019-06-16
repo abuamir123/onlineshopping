@@ -11,7 +11,7 @@
 					<i class="fa fa-user"></i> Please Login
 				</div>
 				<div class="card-block" style="padding: 24px;">
-					<form name="f" th:action="@{/login}" method="post">
+					<form th:action="@{/login}" method="post">
 						<fieldset>
 							
 							<div th:if="${param.error}" class="alert alert-danger">

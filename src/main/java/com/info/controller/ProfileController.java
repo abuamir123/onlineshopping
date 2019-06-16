@@ -26,25 +26,17 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("index")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView("profile/index");
-		mv.addObject("productList", productService.listProduct());
-		return mv;
-	}
+//	@GetMapping("index")
+//	public ModelAndView index() {
+//		ModelAndView mv = new ModelAndView("profile/index");
+//		mv.addObject("productList", productService.listProduct());
+//		return mv;
+//	}
 	
 	@GetMapping("cart-product")
 	public ModelAndView cartProduct(Principal principal) {
 		ModelAndView mv = new ModelAndView("profile/cart-product");
 		User user = userService.findByEmail(principal.getName());
-//		List<User> userList = userService.
-//		System.out.println(user.toString());
-//		List<Product> productArray = new ArrayList<Product>();
-//		for (Product string1 : user.getProductList()) {
-//			productArray.add(string1);
-//		}
-//		mv.addObject("userProduct", user.getProductList());
-//		mv.addObject("userlist", userService.findAllUser());
 		mv.addObject("user", user);
 		int total = findSum(user);
 		mv.addObject("total", total);

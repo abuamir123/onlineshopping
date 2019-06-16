@@ -1,6 +1,7 @@
 package com.info.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -25,6 +26,21 @@ public class CategoryServiceImpl implements CategoryService{
 	@Override
 	public List<Category> listCategory() {
 		return categoryRepository.findAll();
+	}
+
+	@Override
+	public void deleteCategory(long categoryId) {
+		categoryRepository.deleteById(categoryId);
+	}
+
+	@Override
+	public void updateCategory(Category category) {
+		categoryRepository.save(category);
+	}
+
+	@Override
+	public Optional<Category> getCategory(long categoryId) {
+		return categoryRepository.findById(categoryId);
 	}
 
 }
