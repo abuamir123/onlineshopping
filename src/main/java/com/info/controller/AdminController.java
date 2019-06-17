@@ -35,5 +35,10 @@ public class AdminController {
 		mv.addObject("userList", userService.findAllUser());
 		return mv;
 	}
+	
+	@GetMapping("add-user")
+	public String addUser() {
+		return "admin/add-user";
+	}
 
 }

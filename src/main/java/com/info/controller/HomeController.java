@@ -48,6 +48,8 @@ public class HomeController {
 	public ModelAndView signUp(User user) {
 		ModelAndView mv = new ModelAndView("/index");
 		userService.save(user);
+		mv.addObject("productList", productService.listProduct());
+		mv.addObject("categoryList", categoryService.listCategory());
 		return mv;
 	}
 	
@@ -67,5 +69,10 @@ public class HomeController {
 		mv.addObject("categoryList", categoryService.listCategory());
 		return mv;
 	}
-
+	
+	@GetMapping("error")
+	public String error() {
+		return "error";
+	}
+	
 }

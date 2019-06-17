@@ -12,14 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadServiceImpl implements FileUploadService {
 
 	private static String UPLOADED_FOLDER = System.getProperty("user.dir") + 
-			"\\src\\main\\resources\\images\\";
-//	private static String UPLOADED_FOLDER =System.getProperty("user.dir") +
-//			"/src/main/resources/images/";
-//	private static String UPLOADED_FOLDER ="classpath:images/sample.txt";
+			"\\src\\main\\resources\\static\\images\\";
 	
 	@Override
 	public String upload(MultipartFile file) {
-//		System.out.println(file);
 		if (file.isEmpty())
 			return null;
 

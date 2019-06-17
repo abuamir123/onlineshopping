@@ -22,15 +22,15 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long productId;
 	
-	@Column(nullable = false)
+	@Column
 	private String productName;
 	
 	private String productDescription;
 	
-	@Column(nullable = false)
+	@Column
 	private int productPrice;
 	
-	@Column(nullable = false)
+	@Column
 	private int productUnit;
 	
 	private String image;
@@ -42,6 +42,12 @@ public class Product {
 	@ManyToMany(mappedBy = "productList",fetch = FetchType.EAGER)
 	private List<User> userList;
 	
+	public Product() {
+		this.productName = "";
+		this.productDescription = "";
+	}
+	
+
 	public long getProductId() {
 		return productId;
 	}

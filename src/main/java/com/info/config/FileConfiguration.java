@@ -10,7 +10,7 @@ public class FileConfiguration implements WebMvcConfigurer{
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**")
-				.addResourceLocations("classpath:/images/");
+				.addResourceLocations("classpath:/static/images/");
 	}
 
 }

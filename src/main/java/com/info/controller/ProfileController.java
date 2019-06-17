@@ -63,10 +63,10 @@ public class ProfileController {
 		
 		userService.update(user);
 		productService.addProduct(product);
-		
+		int total = findSum(user);
+		mv.addObject("total", total);
 		mv.addObject("user", user);
-		
 		return mv;
 	}
-
+	
 }
