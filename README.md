@@ -5,3 +5,8 @@ DESCRIPTION
 
 VIDEO lINK
 	https://youtu.be/Wzo3uE7vOco
+
+PASSWORD
+	admin123
+	manager123
+	user123
