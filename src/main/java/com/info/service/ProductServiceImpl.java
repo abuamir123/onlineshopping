@@ -33,10 +33,10 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.findById(productId);
 	}
 
-	@Override
+	/*@Override
 	public List<Product> findByCategory(long categoryId) {
 		return productRepository.findByCategory_CategoryId(categoryId);
-	}
+	}*/
 
 	@Override
 	public void deleteProduct(long productId) {

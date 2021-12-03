@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head >
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <style>
-		body{	background: #c2e59c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		}
-			</style>
+ 
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -26,9 +21,7 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
 						class="nav-link" href="#" th:href="@{admin/product-form}">Admin</a></li>
 					
 				</ul>
-				<ul class="nav my-auto mr-4">
-					<li class="nav-item"><a href="#" class="text-info" th:href="@{/profile/cart-product}">AddToCart</a></li>
-				</ul>
+				
 				<form class="form-inline my-2 my-lg-0" form-method="post"
 					th:action="@{/logout}">
 					<button sec:authorize="isAuthenticated()"
@@ -40,24 +33,45 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
 			</div>
 		</nav>
 	<div class="container">
-		<h1 class="display-5">Product Overview</h1>
-
-		
-
-		<div class="row">
-			<div class="col-sm-4" th:each="product : ${productList}">
-				<div class="card mt-4">
-				<img th:hrc="${{product.image}}" class="card-img-top" alt="Product Image" height="300">
-					<div class="card-body">
-						<h5 th:text="${product.productName}" class="card-title"></h5>
-						<p th:text="${product.productDescription}" class="card-text"></p>
-						<p th:text="'@ '+${product.productPrice}" class="card-text"></p>
-						<a href="#" th:href="@{'~/profile/addToCart/' + ${product.productId}}" class="btn btn-primary">AddToCart</a>
-					</div>
-				</div>
-			</div>
+	<br>
+	<div>
+		<a href="#" th:href="@{/admin/addProduct}" class="btn btn-primary">Add Product</a>
 		</div>
 
+		<table class="table my-5">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Image</th>
+					<th scope="col">Product Name</th>
+					<th scope="col">Description</th>
+					<th scope="col">Price</th>
+					<th scope="col">No. of Unit</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="product : ${productList}">
+					<th scope="row" th:text="${product.productId}"></th>
+					<td><img th:src="${product.image}" width="300px"></td>
+					<td th:text="${product.productName}"></td>
+					<td th:text="${product.productDescription}"></td>
+					<td th:text="${product.productPrice}"></td>
+					<td th:text="${product.productUnit}"></td>
+					<td>
+					<a href="#"
+						th:href="@{'updateProduct/'+ ${product.productId}}"
+						class="btn btn-danger">Update</a>
+					<a href="#"
+						th:href="@{'delete-Product/'+ ${product.productId}}"
+						class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		
 	</div>
+
 </body>
 </html>

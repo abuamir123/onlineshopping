@@ -13,7 +13,7 @@ public interface ProductService {
 	
 	public Optional<Product> getProductById(long productId);
 	
-	public List<Product> findByCategory(long categoryId);
+	//public List<Product> findByCategory(long categoryId);
 	
 	public void deleteProduct(long productId);
 

@@ -51,6 +51,7 @@ public class User {
 
 	@ManyToMany(cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
 	@JoinTable(name = "userProductList", joinColumns = @JoinColumn(name = "userId"), inverseJoinColumns = @JoinColumn(name = "productId"))
+	
 	private List<Product> productList;
 
 	public User() {}

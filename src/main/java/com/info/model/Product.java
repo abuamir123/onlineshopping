@@ -2,16 +2,13 @@ package com.info.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,9 +32,9 @@ public class Product {
 	
 	private String image;
 	
-	@ManyToOne(cascade = CascadeType.MERGE)
+	/*@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "category_id")
-	private Category category = new Category();
+	private Category category = new Category();*/
 
 	@ManyToMany(mappedBy = "productList",fetch = FetchType.EAGER)
 	private List<User> userList;
@@ -88,13 +85,13 @@ public class Product {
 		this.image = image;
 	}
 
-	public Category getCategory() {
+	/*public Category getCategory() {
 		return category;
 	}
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
+	}*/
 
 	public List<User> getUserList() {
 		return userList;

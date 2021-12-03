@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+ 
+<meta charset="ISO-8859-1">
+<title>Add Product</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+			<a class="navbar-brand" href="#">Online Shopping</a>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href="#"
+						th:href="@{/index}"><i class="fa fa-home mr-2"></i>Home</a></li>
+					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+						class="nav-link" href="#" th:href="@{/admin/product-form}">Admin</a></li>
+					
+				</ul>
+				<ul class="nav my-auto mr-4">
+					<li class="nav-item"><a href="#" class="text-info" th:href="@{/profile/cart-product}"><i class="fas fa-shopping-cart"></i></a></li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0" form-method="post"
+					th:action="@{/logout}">
+					<button sec:authorize="isAuthenticated()"
+						class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+					<button sec:authorize="isAnonymous()" th:href="@{~/login}"
+						class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
+				</form>
+			</div>
+			</div>
+		</nav>
+		<div class="container">
+		<div
+			style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+			<div class="card">
+				<div class="card-block" style="padding: 24px;">
+					<form th:action="@{/admin/add-product}" method="post" enctype="multipart/form-data">
+						<fieldset>
+							
+							
+							<div class="form-group">
+								<label for="productName">Product Name</label> <input type="text"
+									class="form-control" id="productName" name="productName"
+									placeholder="Product Name">
+							</div>
+
+							<div class="form-group">
+								<label for="productDescription">Product Description</label> <input type="text"
+									class="form-control" id="productDescription" name="productDescription"
+									placeholder="Product Description">
+							</div>
+							
+							<div class="form-group">
+								<label for="productPrice">Product Price</label> <input type="number"
+									class="form-control" id="productPrice" name="productPrice"
+									placeholder="Product Price">
+							</div>
+							
+							<div class="form-group">
+								<label for="productUnit">Product Unit</label> <input type="number"
+									class="form-control" id="productUnit" name="productUnit"
+									placeholder="Product Unit">
+							</div>
+							
+							<div class="form-group">
+								<label for="file">Product Image</label> <input type="file"
+									class="form-control" id="file" name="file">
+							</div>
+							<div class="form-actions" style="margin-top: 12px;">
+								<button type="submit" class="btn btn-success">ADD</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+			</div>
+		</div>
+		</div>
+
+</body>
+</html>

@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
+<head >
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <style>
-		body{	background: #c2e59c;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #64b3f4, #c2e59c);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		}
-			</style>
+ 
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -23,11 +18,11 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
 					<li class="nav-item"><a class="nav-link" href="#"
 						th:href="@{/index}"><i class="fa fa-home mr-2"></i>Home</a></li>
 					<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
-						class="nav-link" href="#" th:href="@{admin/product-form}">Admin</a></li>
+						class="nav-link" href="#" th:href="@{/admin/product-form}">Admin</a></li>
 					
 				</ul>
 				<ul class="nav my-auto mr-4">
-					<li class="nav-item"><a href="#" class="text-info" th:href="@{/profile/cart-product}">AddToCart</a></li>
+					<li class="nav-item"><a href="#" class="text-info" th:href="@{/profile/cart-product}"><i class="fas fa-shopping-cart"></i></a></li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" form-method="post"
 					th:action="@{/logout}">
@@ -40,24 +35,52 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
 			</div>
 		</nav>
 	<div class="container">
-		<h1 class="display-5">Product Overview</h1>
+		<div
+			style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
+			<div class="card">
+				<div class="card-block" style="padding: 24px;">
+					<form th:action="@{/admin/add-product}" method="post"
+						enctype="multipart/form-data">
+						<fieldset>
+							<input type="hidden" name="productId" th:value="${Product.productId}">
+							
 
-		
+							<div class="form-group">
+								<label for="productName">Product Name</label> <input type="text"
+									class="form-control" id="productName" name="productName"
+									th:value="${Product.productName}">
+							</div>
 
-		<div class="row">
-			<div class="col-sm-4" th:each="product : ${productList}">
-				<div class="card mt-4">
-				<img th:hrc="${{product.image}}" class="card-img-top" alt="Product Image" height="300">
-					<div class="card-body">
-						<h5 th:text="${product.productName}" class="card-title"></h5>
-						<p th:text="${product.productDescription}" class="card-text"></p>
-						<p th:text="'@ '+${product.productPrice}" class="card-text"></p>
-						<a href="#" th:href="@{'~/profile/addToCart/' + ${product.productId}}" class="btn btn-primary">AddToCart</a>
-					</div>
+							<div class="form-group">
+								<label for="productDescription">Product Description</label> <input
+									type="text" class="form-control" id="productDescription"
+									name="productDescription" th:value="${Product.productDescription}">
+							</div>
+
+							<div class="form-group">
+								<label for="productPrice">Product Price</label> <input
+									type="number" class="form-control" id="productPrice"
+									name="productPrice" th:value="${Product.productPrice}">
+							</div>
+
+							<div class="form-group">
+								<label for="productUnit">Product Unit</label> <input
+									type="number" class="form-control" id="productUnit"
+									name="productUnit" th:value="${Product.productUnit}">
+							</div>
+
+							<div class="form-group">
+								<label for="file">Product Image</label> <input type="file"
+									class="form-control" id="file" name="file">
+							</div>
+							<div class="form-actions" style="margin-top: 12px;">
+								<button type="submit" class="btn btn-success">ADD</button>
+							</div>
+						</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
-
 	</div>
 </body>
 </html>
