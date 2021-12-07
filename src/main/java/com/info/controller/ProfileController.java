@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.bytebuddy.asm.Advice.Return;
+
 import com.info.model.Product;
 import com.info.model.User;
 import com.info.service.ProductService;
@@ -68,5 +70,18 @@ public class ProfileController {
 		mv.addObject("user", user);
 		return mv;
 	}
+
+	@GetMapping("checkout")
+	public ModelAndView checkout(Principal principal)
+	{
+		ModelAndView mv = new ModelAndView("profile/checkout");
+		User user = userService.findByEmail(principal.getName());
+		int total = findSum(user);
+		mv.addObject("total", total);
+		return mv;
+
+	}
+
+
 	
 }

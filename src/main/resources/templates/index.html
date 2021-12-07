@@ -47,7 +47,7 @@ background: linear-gradient(to right, #64b3f4, #c2e59c); /* W3C, IE 10+/ Edge, F
 		<div class="row">
 			<div class="col-sm-4" th:each="product : ${productList}">
 				<div class="card mt-4">
-				<img th:hrc="${{product.image}}" class="card-img-top" alt="Product Image" height="300">
+				<img th:src="${product.image}" class="card-img-top" height="300" alt="Product Image">
 					<div class="card-body">
 						<h5 th:text="${product.productName}" class="card-title"></h5>
 						<p th:text="${product.productDescription}" class="card-text"></p>
