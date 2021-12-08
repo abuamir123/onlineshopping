@@ -6,8 +6,41 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
 <title>Sign Up</title>
+<style>
+	body{
+		background: #CCCCB2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #757519, #CCCCB2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #757519, #CCCCB2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	}
+	</style>
 </head>
 <body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container">
+		<a class="navbar-brand" href="#">Online Shopping</a>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a class="nav-link" href="#"
+					th:href="@{/index}"><i class="fa fa-home mr-2"></i>Home</a></li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a
+					class="nav-link" href="#" th:href="@{admin/product-form}">Admin</a></li>
+				
+			</ul>
+			<ul class="nav my-auto mr-4">
+				<li class="nav-item"><a href="#" class="text-info" th:href="@{/profile/cart-product}">AddToCart</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0" form-method="post"
+				th:action="@{/logout}">
+				<button sec:authorize="isAuthenticated()"
+					class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
+				<button sec:authorize="isAnonymous()" th:href="@{~/login}"
+					class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
+			</form>
+		</div>
+		</div>
+	</nav>
 	<div class="container">
 		<div
 			style="width: 600px; margin-left: auto; margin-right: auto; margin-top: 24px; padding: 24px;">
